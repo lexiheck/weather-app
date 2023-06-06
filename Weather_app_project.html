@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>
+        <div class="row">
+          <div class="col-6">
+            <span class="location" id="selected-city"></span><br />
+            <span class="temperature" id="temperature"></span>
+            <span id="units">
+              <a href="#" id="celsius-link">&deg;C</a> |
+              <a href="#" id="fahrenheit-link">&deg;F</a>
+            </span>
+          </div>
+          <div class="col-4">
+            <form class="form-inline" id="city-search">
+              <div class="form-group mb-2"></div>
+              <div class="form-group mx-sm-3 mb-2">
+                <label for="inputPassword2" class="sr-only">Enter a city</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="enter-city"
+                  placeholder="Enter a city"
+                  autocomplete="off"
+                  autofocus="on"
+                />
+              </div>
+              <button type="submit" value="search" class="btn btn-primary mb-2">
+                Submit
+              </button>
+            </form>
+          </div>
+          <div class="col-2">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              id="current-location"
+            >
+              Current Location 📍
+            </button>
+          </div>
+        </div>
+      </h1>
+      <h2>
+        <div class="row">
+          <div class="col-8" id="date"></div>
+          <div class="col-4">
+            <span id="clouds">0</span>% Cloudy<br />
+            <span id="wind"> </span>MPH 🍃 <br />
+            <span id="humidity"> </span>% Humidity💧
+          </div>
+        </div>
+      </h2>
+      <table class="table table-borderless table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col-12" class="table-heading">10-Day Forecast</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Today</th>
+            <td>☁️</td>
+            <td>High: 65&deg;</td>
+            <td>Low: 44&deg;</td>
+          </tr>
+          <tr>
+            <th scope="row">Friday</th>
+            <td>🌧️</td>
+            <td>High: 57&deg;</td>
+            <td>Low: 47&deg;</td>
+          </tr>
+          <tr>
+            <th scope="row">Saturday</th>
+            <td>⛈️</td>
+            <td>High: 58&deg;</td>
+            <td>Low: 48&deg;</td>
+          </tr>
+          <tr>
+            <th scope="row">Sunday</th>
+            <td>⛈️</td>
+            <td>High: 60&deg;</td>
+            <td>Low: 47&deg;</td>
+          </tr>
+          <tr>
+            <th scope="row">Monday</th>
+            <td>☁️</td>
+            <td>High: 57&deg;</td>
+            <td>Low: 44&deg;</td>
+          </tr>
+          <tr>
+            <th scope="row">Tuesday</th>
+            <td>🌧️</td>
+            <td>High: 53&deg;</td>
+            <td>Low: 42&deg;</td>
+          </tr>
+          <tr>
+            <th scope="row">Wednesday</th>
+            <td>☁️</td>
+            <td>High: 55&deg;</td>
+            <td>Low: 40&deg;</td>
+          </tr>
+          <tr>
+            <th scope="row">Thursday</th>
+            <td>⛅</td>
+            <td>High: 61&deg;</td>
+            <td>Low: 41&deg;</td>
+          </tr>
+          <tr>
+            <th scope="row">Friday</th>
+            <td>⛈️</td>
+            <td>High: 62&deg;</td>
+            <td>Low: 43&deg;</td>
+          </tr>
+          <tr>
+            <th scope="row">Saturday</th>
+            <td>⛈️</td>
+            <td>High: 63&deg;</td>
+            <td>Low: 44&deg;</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card-deck ml-5 mr-5 mb-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">UV Index 🌞</h5>
+          <p class="card-text">4 Moderate</p>
+          <p class="card-text">
+            <small class="text-muted"
+              >Sun protection is recommended. Levels of Moderate or higher are
+              reached from 11AM to 5PM.</small
+            >
+          </p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Visibility 👁️</h5>
+          <p class="card-text">18mi (perfectly clear)</p>
+          <p class="card-text">
+            <small class="text-muted"
+              >Today, the visibility will be perfectly clear, at 9-18 mi.</small
+            >
+          </p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Pressure ⏲️</h5>
+          <p class="card-text">30.13 inHg</p>
+          <p class="card-text">
+            <small class="text-muted"
+              >Pressure is currently 30.13 inHg and falling. Today, the average
+              pressure will be 30.15 inHg, and the lowest pressure will be 30.09
+              inHg.</small
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="card-deck ml-5 mr-5 mb-5">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Wind 🍃</h5>
+          <p class="card-text">4 mph (ESE)</p>
+          <p class="card-text">
+            <small class="text-muted"
+              >Wind is currently 4 mph from the east-southeast. Today, wind
+              speeds are 1-8 mph, with gusts up to 18 mph.</small
+            >
+          </p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Rainfall ☔</h5>
+          <p class="card-text">.1"</p>
+          <p class="card-text">
+            <small class="text-muted"
+              >There has been .1" of rainfall in the last 24 hours. Today's
+              total rainfall will be less than 0.05". In the next 24 hours. .25"
+              is expected.</small
+            >
+          </p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Humidity 💧</h5>
+          <p class="card-text">51% (Dew point: 45&deg;)</p>
+          <p class="card-text">
+            <small class="text-muted"
+              >Today, the average humidity is 76%. The dew point is
+              42&deg;-49&deg;.</small
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+    <script src="javascript.js"></script>
+  </body>
+</html>
