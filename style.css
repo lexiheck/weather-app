@@ -36,3 +36,7 @@ h2 {
 a:hover {
     text-decoration: none;
 }
+.sourceCode{
+    text-align: center;
+    margin: 0 auto;
+}
