@@ -1,12 +1,14 @@
 body {
     background: rgb(98, 185, 239);
+    font-family: 'Roboto',
+            sans-serif;
 }
 
 h1 {
+    font-size: 50px;
+    font-weight: bold;
     margin-top: 30px;
     padding: 15px;
-    font-family: 'Roboto',
-        sans-serif;
     border: 2px solid rgb(52, 83, 86);
     border-radius: 10px;
     background-color: rgb(255, 255, 255, 0.3);
@@ -27,8 +29,7 @@ h1 {
 }
 
 h2 {
-    font-family: 'Roboto',
-        sans-serif;
+    font-size: 30px;
     padding: 20px;
 
 }
@@ -39,4 +40,12 @@ a:hover {
 .sourceCode{
     text-align: center;
     margin: 0 auto;
+}
+#current-conditions{
+    text-transform: capitalize;
+}
+#units{
+    position: relative;
+    font-size: 25px;
+    top: -20px;
 }
