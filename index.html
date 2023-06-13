@@ -24,10 +24,9 @@
     <div class="container">
       <h1>
         <div class="row">
-          <div class="col-6">
-            <span class="location" id="selected-city"></span><br />
-            <span id="current-conditions"></span>
-            <span id="weatherIcon"></span>
+          <div class="col-8">
+            <span class="location" id="selected-city"> </span>
+            <br />
             <span class="temperature" id="temperature"></span>
             <span id="units">
               <a href="#" id="celsius-link">°C</a> |
@@ -52,6 +51,16 @@
                 Submit
               </button>
             </form>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-10">
+            <span id="current-conditions"></span>
+            <img
+              src="https://ssl.gstatic.com/onebox/weather/64/sunny.png"
+              alt="weather"
+              id="weather-icon"
+            />
           </div>
           <div class="col-2">
             <button

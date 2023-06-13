@@ -26,7 +26,7 @@ function displayWeather(response) {
    celsiusTemp = response.data.main.temp;
   document.querySelector("#selected-city").innerHTML = response.data.name;
   document.querySelector("#current-conditions").innerHTML = response.data.weather[0].description;
-  document.querySelector("#weather-icon").innerHTML = 
+  document.querySelector("#weather-icon").setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
   document.querySelector("#temperature").innerHTML = Math.round(
     celsiusTemp
   );

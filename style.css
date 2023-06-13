@@ -43,6 +43,7 @@ a:hover {
 }
 #current-conditions{
     text-transform: capitalize;
+    font-size: 30px;
 }
 #units{
     position: relative;
