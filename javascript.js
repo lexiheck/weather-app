@@ -22,6 +22,35 @@ if (minutes < 10) {
 
 date.innerHTML = `${day} ${hours}:${minutes}`;
 
+function displayForecast(response){
+  let weeklyForecast = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+  let days = ["Thursday", "Friday", "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday"];
+  days.forEach(function (day) {
+  forecastHTML = 
+  forecastHTML + 
+        `
+          <tr>
+            <th scope="row">${day}</th>
+            <td>☁️</td>
+            <td>High: 65&deg;</td>
+            <td>Low: 44&deg;</td>
+          </tr>`;
+});
+    
+  forecastHTML = forecastHTML + `</div>`;
+
+  weeklyForecast.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates){
+let apiKey = "8cd9be374c7c96c39a9fe73f4bf2f055";
+let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+axios.get(apiUrl).then(displayForecast);
+}
+
+
 function displayWeather(response) {
    celsiusTemp = response.data.main.temp;
   document.querySelector("#selected-city").innerHTML = response.data.name;
@@ -35,6 +64,8 @@ function displayWeather(response) {
   );
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#clouds").innerHTML = response.data.clouds.all;
+
+  getForecast(response.data.coord);
  
 }
 

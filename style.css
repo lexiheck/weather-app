@@ -50,3 +50,6 @@ a:hover {
     font-size: 25px;
     top: -20px;
 }
+.table-heading{
+    text-align: center;
+}
