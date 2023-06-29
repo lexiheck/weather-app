@@ -22,21 +22,40 @@ if (minutes < 10) {
 
 date.innerHTML = `${day} ${hours}:${minutes}`;
 
+function formatDay(timestamp){
+let date = new Date(timestamp * 1000);
+let day = date.getDay();
+let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+
+return days[day];
+
+}
+
 function displayForecast(response){
+  let forecast = response.data.daily;
+
   let weeklyForecast = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
-  let days = ["Thursday", "Friday", "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday"];
-  days.forEach(function (day) {
+  
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 7){
   forecastHTML = 
   forecastHTML + 
         `
           <tr>
-            <th scope="row">${day}</th>
-            <td>☁️</td>
-            <td>High: 65&deg;</td>
-            <td>Low: 44&deg;</td>
-          </tr>`;
+            <th scope="row">${formatDay(forecastDay.dt)}</th>
+            <td>
+            <img
+              src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png"
+              alt=""
+              width="42"
+              />
+            </td>
+            <td>High: ${Math.round(forecastDay.temp.max)}°C</td>
+            <td>Low: ${Math.round(forecastDay.temp.min)}°C</td>
+          </tr>`;}
 });
     
   forecastHTML = forecastHTML + `</div>`;
